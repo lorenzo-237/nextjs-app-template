@@ -2,6 +2,9 @@ import type { Metadata } from 'next';
 import { Inter as FontSans } from 'next/font/google';
 import './globals.css';
 import { cn } from '@/lib/utils';
+import { Providers } from './providers';
+import { TailwindIndicator } from '@/components/utils/TailwindIndicator';
+import { NextTopLoader } from '@/components/utils/NextTopLoader';
 
 const fontSans = FontSans({
   subsets: ['latin'],
@@ -20,7 +23,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={cn('min-h-screen bg-background font-sans antialiased', fontSans.variable)}>{children}</body>
+      <body className={cn('min-h-screen bg-background font-sans antialiased', fontSans.variable)}>
+        <Providers>
+          <NextTopLoader delay={100} showSpinner={false} color='hsl(var(--primary))' />
+          {children}
+          <TailwindIndicator />
+        </Providers>
+      </body>
     </html>
   );
 }
