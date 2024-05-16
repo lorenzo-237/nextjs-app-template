@@ -3,7 +3,13 @@ import { PrismaAdapter } from '@auth/prisma-adapter';
 import { prisma } from './lib/prisma';
 import { nextAuthProviders } from './lib/authentication/nextauth-providers';
 
-export const { handlers, signIn, signOut, auth } = NextAuth({
+export const { handlers, auth } = NextAuth({
+  pages: {
+    signIn: '/auth/login',
+  },
   adapter: PrismaAdapter(prisma),
-  providers: nextAuthProviders,
+  providers: nextAuthProviders(),
+  session: {
+    strategy: 'database',
+  },
 });

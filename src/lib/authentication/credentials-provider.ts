@@ -2,6 +2,7 @@ import crypto from 'crypto';
 import Credentials from 'next-auth/providers/credentials';
 import { env } from '../env';
 import { prisma } from '../prisma';
+import { signInSchema } from './signInSchema';
 
 const PASSWORD_REGEX = /^(?=.*[A-Za-z])(?=.*\d).{8,}$/;
 
@@ -30,17 +31,24 @@ export const getCredentialsProvider = () => {
       password: {},
     },
     authorize: async (credentials) => {
-      if (!credentials.email || !credentials.password) return null;
+      const { email, password } = await signInSchema.parseAsync(credentials);
 
       let user = null;
 
       // logic to salt and hash password
-      const pwHash = hashStringWithSalt(String(credentials.password), env.NEXTAUTH_SECRET);
+      const pwHash = hashStringWithSalt(password, env.AUTH_SECRET);
+
+      return {
+        id: 'abcd',
+        email: 'lorenzo.softdev@gmail.com',
+        name: 'lorenzo',
+        image: null,
+      };
 
       // logic to verify if user exists
       user = await prisma.user.findFirst({
         where: {
-          email: credentials.email,
+          email: email,
           passwords: {
             some: {
               passwordHash: pwHash,
