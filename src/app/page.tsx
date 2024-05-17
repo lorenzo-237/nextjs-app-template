@@ -1,12 +1,15 @@
-import TestSession from '@/components/auth/TestSession';
-import React from 'react';
+import { auth } from "@/auth";
+import { AppPage } from "@/components/pages/AppPage";
+import { redirect } from "next/navigation";
 
-function HomePage() {
-  return (
-    <div className='relative flex h-fit flex-col bg-background text-foreground'>
-      <TestSession />
-    </div>
-  );
+async function HomePage() {
+  const session = await auth();
+
+  if (!session) {
+    redirect("/login");
+  }
+
+  return <AppPage />;
 }
 
 export default HomePage;

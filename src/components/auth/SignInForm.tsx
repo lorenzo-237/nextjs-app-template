@@ -8,7 +8,7 @@ import { useQuery } from '@tanstack/react-query';
 import { AlertTriangle } from 'lucide-react';
 import Link from 'next/link';
 // import { MagicLinkForm } from './MagicLinkForm';
-import { ProviderButton } from './ProviderButton';
+import { ProviderButton } from './buttons/ProviderButton';
 import { SignInCredentialsAndMagicLinkForm } from './SignInCredentialsAndMagicLinkForm';
 
 export const SignInForm = () => {
