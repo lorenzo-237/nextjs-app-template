@@ -5,7 +5,8 @@ import { nextAuthProviders } from './lib/authentication/nextauth-providers';
 
 export const { handlers, auth } = NextAuth({
   pages: {
-    signIn: '/auth/login',
+    signIn: '/login',
+    error: '/auth/error',
   },
   adapter: PrismaAdapter(prisma),
   providers: nextAuthProviders(),

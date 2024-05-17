@@ -75,7 +75,7 @@ export const SignInForm = () => {
       {providers.credentials ? (
         <Typography variant='small'>
           You don't have an account?{' '}
-          <Typography variant='link' as={Link} href='/auth/signup'>
+          <Typography variant='link' as={Link} href='/signup'>
             Sign up
           </Typography>
         </Typography>

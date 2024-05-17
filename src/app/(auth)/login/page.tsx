@@ -4,10 +4,10 @@ import { auth } from '@/auth';
 import type { PageParams } from '@/types/next';
 import { AlertTriangle } from 'lucide-react';
 import { redirect } from 'next/navigation';
-import { getError } from '../error/auth-error-mapping';
+import { getError } from '../auth/error/auth-error-mapping';
 import { SignInForm } from '@/components/auth/SignInForm';
 
-export default async function AuthSignInPage(props: PageParams<{}>) {
+export default async function SignInPage(props: PageParams<{}>) {
   const { errorMessage, error } = getError(props.searchParams.error);
 
   const user = await auth();

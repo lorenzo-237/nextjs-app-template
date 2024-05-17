@@ -22,8 +22,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='en'>
-      <body className={cn('min-h-screen bg-background font-sans antialiased', fontSans.variable)}>
+    <html lang='en' className='h-full' suppressHydrationWarning>
+      <body className={cn('h-full bg-background font-sans antialiased', fontSans.variable)}>
         <Providers>
           <NextTopLoader delay={100} showSpinner={false} color='hsl(var(--primary))' />
           {children}
